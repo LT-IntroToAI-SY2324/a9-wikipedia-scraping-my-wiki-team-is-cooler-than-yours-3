@@ -9,20 +9,20 @@ import re
 # should extract a match where the first group is the month, the second group the day
 # and the third group the year
 date_string = "November 9, 1982"
-pat = re.compile( "(\w+)November (\d+)9, (\d+)1982", re.IGNORECASE)
+pat = re.compile( "November (?P<month>) 9(?P<day>), 1982(?P<year>[\d]+)", re.IGNORECASE)
 date_matches = pat.match(date_string)
 
 # problem 2
 # should extract a match where the first group is the number, the second the street, the
 # third the city, the fourth the state and the fifth the zip code
 address_string = "2501 Addison Street\nChicago, IL 60618"
-pat = re.compile("(\d+)2501 (\w+)Addison Street\n(\w+)Chicago, (\w+)IL (\d+)60618", re.IGNORECASE)
+pat = re.compile("2501(?P<number>[\d]+) Addison Street\n(?P<street>) Chicago(?P<city>), IL(?P<state>) 60618(?P<zip code>[\d]+)", re.IGNORECASE)
 address_matches = pat.match(address_string)
 
 # problem 3
 # should match all hashtags
 tweet_string = "hi everyone! #cs #python #LT #champions"
-pat = re.compile("hi everyone! (\#)#cs (\#)#python (\#)#LT (\#)#champions", re.IGNORECASE)
+pat = re.compile("hi everyone! #cs(?P<hastag>[\#]) #python(?P<hastag>[\#]) #LT(?P<hastag>[\#]) #champions(?P<hastag>[\#])", re.IGNORECASE)
 hashtag_matches = pat.findall(tweet_string)
 
 # until you uncomment any code line below you'll get an EOF linting error feel free to
